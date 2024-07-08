@@ -1,0 +1,25 @@
+doctype html 
+html(lang="en")
+    head 
+        title= title 
+        meta(charset="UTF-8")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+        link(rel="stylesheet", href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css")
+    body 
+        .container.text-center
+            h1= title
+            p Bienvenue sur l'application de gestion de meubles
+            p Ce site vous permet de suivre les matériaux utilisés pour chaque meuble.
+
+            .row 
+                .col-md-6.offset-md-3 
+                    h2 Connexion 
+                    form(action="/login" method="POST")
+                        .form-group.mb-2
+                            label(for="email") Adresse email
+                            input#email.form-control(type="email" name="email" required)
+                        .form-group.mb-2
+                            label(for="password") Mot de passe
+                            input#password.form-control(type="password" name="password" required)
+                        .form-group.mb-2
+                            button.btn.btn-primary(type="submit") Se connecter
