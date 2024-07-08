@@ -4,9 +4,12 @@ import { fileURLToPath } from 'node:url';
 import dotenv from 'dotenv';
 import routes from './routes/index.js';
 import bodyParser from 'body-parser';
+import connectDB from './config/db.js';
 
 dotenv.config();
 const server = express();
+
+connectDB();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
