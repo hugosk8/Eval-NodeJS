@@ -11,6 +11,6 @@ router.use('/', homeRoutes);
 router.use('/', authRoutes);
 router.use('/meubles', furnituresRoutes);
 router.use('/materiaux', materialsRoutes);
-router.use('/entrprises', companiesRoutes);
+router.use('/entreprises', companiesRoutes);
 
 export default router;
