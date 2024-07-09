@@ -4,10 +4,27 @@ import User from '../models/Users.js';
 
 const router = Router();
 
-router.post('/login', (req, res) => {
+router.post('/login', async (req, res) => {
     const { email, password } = req.body;
-    res.send(`Email: ${email}, Password: ${password}`);
-})
+    try {
+        const user = await User.findOne({ email });
+        if (!user) {
+            return res.status(400).json({ message: 'Email ou mot de passe incorrect' });
+        }
+
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) {
+            return res.status(400).json({ message: 'Email ou mot de passe incorrect' });
+        }
+
+        req.session.userId = user._id;
+
+        res.redirect('/home');
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+        console.log(error.message);
+    }
+});
 
 router.get('/register', (req, res) => {
     res.render('register', { title: 'Création d\'un compte' });

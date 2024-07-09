@@ -1,21 +1,18 @@
-doctype html 
-html(lang="en")
-    head 
-        title= title 
-        meta(charset="UTF-8")
-        meta(name="viewport" content="width=device-width, initial-scale=1.0")
-        link(rel="stylesheet", href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css")
-    body 
-        .container.text-center
-            .row 
-                .col-md-6.offset-md-3 
-                    h2 Création d'un compte 
-                    form(action="/register" method="POST")
-                        .form-group.mb-2
-                            label(for="email") Adresse email
-                            input#email.form-control(type="email" name="email" required)
-                        .form-group.mb-2
-                            label(for="password") Mot de passe
-                            input#password.form-control(type="password" name="password" required)
-                        .form-group.mb-2
-                            button.btn.btn-primary(type="submit") Créer un compte
+extends layouts/guest_layout 
+
+block content
+    .text-center
+        .row 
+            .col-md-6.offset-md-3 
+                h2 Création d'un compte 
+                form(action="/register" method="POST")
+                    .form-group.mb-2
+                        label(for="email") Adresse email
+                        input#email.form-control(type="email" name="email" required)
+                    .form-group.mb-2
+                        label(for="password") Mot de passe
+                        input#password.form-control(type="password" name="password" required)
+                    .form-group.mb-2
+                        a(href="/") Déja un compte? Connectez vous
+                    .form-group.mb-2
+                        button.btn.btn-primary(type="submit") Créer un compte
