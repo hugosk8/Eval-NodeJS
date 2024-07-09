@@ -1,53 +1,10 @@
 import { Router } from "express";
-import bcrypt from 'bcrypt';
-import User from '../models/Users.js';
+import { renderRegisterPage, registerUser, loginUser } from "../controllers/authController.js";
 
 const router = Router();
 
-router.post('/login', async (req, res) => {
-    const { email, password } = req.body;
-    try {
-        const user = await User.findOne({ email });
-        if (!user) {
-            return res.status(400).json({ message: 'Email ou mot de passe incorrect' });
-        }
-
-        const isMatch = await bcrypt.compare(password, user.password);
-        if (!isMatch) {
-            return res.status(400).json({ message: 'Email ou mot de passe incorrect' });
-        }
-
-        req.session.userId = user._id;
-
-        res.redirect('/home');
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-        console.log(error.message);
-    }
-});
-
-router.get('/register', (req, res) => {
-    res.render('register', { title: 'Création d\'un compte' });
-});
-
-router.post('/register', async (req, res) => {
-    const { email, password } = req.body;
-    try {
-        const existignUser = await User.findOne({ email });
-        if (existignUser) {
-            return res.status(400).json({ message: 'Email déja utilisé' })
-        }
-
-        const hashedPassword = await bcrypt.hash(password, 10);
-
-        const newUser = new User({ email, password: hashedPassword });
-        await newUser.save();
-
-        res.status(201).json({ message: 'Utilisateur créé avec succès'});
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-        console.log(error.message);
-    }
-})
+router.post('/login', loginUser);
+router.get('/register', renderRegisterPage);
+router.post('/register', registerUser);
 
 export default router;
