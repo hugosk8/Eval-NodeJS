@@ -3,11 +3,8 @@ import mongoose from 'mongoose';
 const CompaniesSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: true
-    },
-    type: {
-        type: String,
-        required: true
+        required: true,
+        unique: true
     }
 });
 

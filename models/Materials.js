@@ -3,14 +3,16 @@ import mongoose from "mongoose";
 const MaterialsSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     type: {
         type: String,
         required: true
     },
     company: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Company',
         required: true
     }
 })
