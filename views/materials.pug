@@ -1,0 +1,22 @@
+extends layouts/user_layout 
+
+block content   
+    .text-center 
+        h1= title
+        table.table.table-striped
+            thead
+                tr 
+                    th Nom
+                    th Type
+                    th Fournisseurs
+                    th Meubles
+            tbody 
+                each material in materials
+                    tr 
+                        td= material.name 
+                        td= material.type
+                        td= material.company.name
+                        td
+                            ul 
+                                each furniture in material.furnitures
+                                    li= furniture

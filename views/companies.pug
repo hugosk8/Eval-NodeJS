@@ -1,0 +1,18 @@
+extends layouts/user_layout 
+
+block content   
+    .text-center 
+        h1= title
+        table.table.table-striped
+            thead
+                tr 
+                    th Nom
+                    th Matériaux
+            tbody 
+                each company in companies
+                    tr 
+                        td= company.name 
+                        td
+                            ul
+                                each material in company.materials
+                                    li= material

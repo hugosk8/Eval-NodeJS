@@ -1,0 +1,25 @@
+extends layouts/user_layout 
+
+block content   
+    .text-center 
+        h1= title
+        table.table.table-striped
+            thead
+                tr 
+                    th Nom
+                    th Materiaux
+                    th Fournisseurs 
+                    th Date de création
+            tbody 
+                each furniture in furnitures
+                    tr 
+                        td= furniture.name 
+                        td 
+                            ul 
+                                each material in furniture.materials 
+                                    li= material.name
+                        td 
+                            ul 
+                                each material in furniture.materials 
+                                    li= material.company.name 
+                        td= furniture.CreationDate.toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' })

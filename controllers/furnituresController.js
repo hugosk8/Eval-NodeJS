@@ -1,4 +1,4 @@
-import Furniture from '../models/Furnitures.js';
+import Furniture from '../models/FurnituresModel.js';
 
 export const addFurniture = async (req, res) => {
     const { name, category, materials } = req.body;
@@ -21,5 +21,21 @@ export const findFurniture = async (req, res) => {
         res.status(200).json(furnitures);
     } catch (error) {
         res.status(500).json({ error: error.message });
+    }
+}
+
+export const showFurnitures = async (req, res) => {
+    try {
+        const furnitures = await Furniture.find().populate({
+            path: 'materials',
+            populate: {
+                path: 'company'
+            }
+        });
+
+        res.render('furnitures', { title: 'Liste des meubles', furnitures })
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Erreur du serveur');
     }
 }

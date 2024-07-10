@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt';
-import User from '../models/Users.js';
+import User from '../models/UsersModel.js';
 
 export const loginUser = async (req, res) => {
     const { email, password } = req.body;

@@ -1,9 +1,10 @@
 import { Router } from "express";
-import { addFurniture, findFurniture } from "../controllers/furnituresController.js";
+import { addFurniture, findFurniture, showFurnitures } from "../controllers/furnituresController.js";
 
 const router = Router();
 
 router.post('/', addFurniture);
-router.get('/', findFurniture);
+router.get('/entreprises/nos-fournisseurs', findFurniture); 
+router.get('/nos-meubles', showFurnitures); 
 
 export default router;

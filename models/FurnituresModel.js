@@ -11,7 +11,7 @@ const FurnituresSchema = new mongoose.Schema({
     },
     materials: [{
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'material'
+            ref: 'Material'
         }],
     CreationDate: {
         type: Date,

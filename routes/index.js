@@ -9,8 +9,8 @@ const router = Router();
 
 router.use('/', homeRoutes);
 router.use('/', authRoutes);
-router.use('/meubles', furnituresRoutes);
-router.use('/materiaux', materialsRoutes);
-router.use('/entreprises', companiesRoutes);
+router.use('/', furnituresRoutes);
+router.use('/', materialsRoutes);
+router.use('/', companiesRoutes);
 
 export default router;
